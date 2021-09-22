@@ -34,11 +34,11 @@ solve2(vector<int>& v)
             for(j=i+1; j<v.size(); j++)
             {
                      c++;
-                     cout<<"c-> "<<c<<endl;
+                    // cout<<"c-> "<<c<<endl;
                 if(j==f|| v[j]!=v[j+1])
                 {
                     int sum = res+v[j];
-                      cout<<"->"<<sum<<endl;
+                      //cout<<"->"<<sum<<endl;
                     it = find(v.begin()+j+1,v.end(),(-1)*sum);
                     if(it!=v.end())
                         ans.push_back({v[i],v[j],*it});
@@ -104,8 +104,8 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
     //vector<int>v{-3,1,2,1,-2};
-    vector<int>v{0,0,0,0};
-    solve3(v);
+    vector<int>v{2,-1,-1,0,0,0,0};
+    solve2(v);
     return 0;
 }
 
