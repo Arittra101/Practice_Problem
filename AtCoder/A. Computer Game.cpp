@@ -14,40 +14,34 @@ lli i,j;
 #define R_SORT(v) sort(v.begin(),v.end(),greater<lli>());
 #define en "\n"
 
-
 void solve()
 {
-    lli h1,h2,c=1;
-    cin>>h1>>h2;
-    vector<vector<lli>>v(h1,vector<lli>(h2,0));
-    for(i=0; i<h1; i++)
+    lli t;
+    cin>>t;
+    while(t--)
     {
-        for(j=0; j<h2; j++)
+        lli n,l=0;
+        cin>>n;
+        string s,s1;
+        cin>>s>>s1;
+        for(i=0;i<n;i++)
         {
-            lli x;
-            cin>>x;
-            v[i][j]=x;
-
-        }
-    }
-    for(i=0; i<h1-1; i++)
-    {
-        for(j=0; j<h2-1; j++)
-        {
-            if(v[i][j]+v[i+1][j+1]>v[i+1][j]+v[i][j+1])
+            if(s[i]=='1' && s1[i]=='1')
             {
-                c=0;
+                l=1;
+                cout<<"NO"<<endl;
                 break;
             }
         }
-        if(c==0) break;
-    }
-    if(c) cout<<"Yes";
-    else cout<<"No";
+        if(l==0) cout<<"YES"<<endl;
+
+}
 }
 int main()
 {
-
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     solve();
     return 0;
 }

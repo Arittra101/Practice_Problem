@@ -17,37 +17,33 @@ lli i,j;
 
 void solve()
 {
-    lli h1,h2,c=1;
-    cin>>h1>>h2;
-    vector<vector<lli>>v(h1,vector<lli>(h2,0));
-    for(i=0; i<h1; i++)
+    lli t;
+    cin>>t;
+    while(t--)
     {
-        for(j=0; j<h2; j++)
+        lli num;
+        cin>>num;
+        if(num%2050==0)
         {
-            lli x;
-            cin>>x;
-            v[i][j]=x;
-
-        }
-    }
-    for(i=0; i<h1-1; i++)
-    {
-        for(j=0; j<h2-1; j++)
-        {
-            if(v[i][j]+v[i+1][j+1]>v[i+1][j]+v[i][j+1])
+            lli flag =  num/2050;
+            lli sum=0;
+            while(flag>=1)
             {
-                c=0;
-                break;
+                lli temp = flag%10;
+                flag/=10;
+                sum+=temp;
             }
+            cout<<sum<<endl;
         }
-        if(c==0) break;
+        else cout<<-1<<endl;
     }
-    if(c) cout<<"Yes";
-    else cout<<"No";
+
 }
 int main()
 {
-
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     solve();
     return 0;
 }
