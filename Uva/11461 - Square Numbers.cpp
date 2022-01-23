@@ -1,7 +1,9 @@
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long int lli;
 lli i,j;
+
 #define pii  pair<lli, lli>
 #define vi vector<lli>
 #define pb push_back
@@ -12,38 +14,36 @@ lli i,j;
 #define R_SORT(v) sort(v.begin(),v.end(),greater<lli>());
 #define en "\n"
 
+
 void solve()
 {
-    lli t;
-    cin>>t;
-    while(t--)
+    lli a,b;
+
+    while(1)
     {
-        lli n,k;
+        cin>>a>>b;
         lli c=0;
-        cin>>n>>k;
-        lli k1 = n/2;
-        if(n%2==0 && k>k1)cout<<-1<<endl;
-        else if(n%2!=0 && k>k1+1) cout<<-1<<endl;
-        else
-        {
-            for(i=1; i<=n; i++)
+        vi v;
+        if(a==0 && b==0) break;
+        else {
+            lli mx = max(a,b);
+            lli mn = min(a,b);
+            for(i=1;i<=1000;i++)
             {
-                for(j=1;j<=n; j++)
-                {
-                    if(i%2!=0&&i==j &&c<k)
-                    {
-                        cout<<"R";
-                        c++;
-                    }
-                    else cout<<".";
-                }
-                cout<<endl;
+                lli sqrt = i*i;
+                v.pb(sqrt);
             }
+            for(i=0;i<v.size();i++)
+            {
+                if(v[i]>=mn && v[i]<=mx)
+                    c++;
+                else if(v[i]>mx) break;
+            }
+
         }
+        cout<<c<<endl;
     }
 }
-
-
 int main()
 {
     ios_base::sync_with_stdio(false);
