@@ -1,5 +1,4 @@
 
-
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long int lli;
@@ -11,153 +10,105 @@ lli i,j;
 #define mp make_pair
 #define yes cout << "YES" << "\n";
 #define no cout << "NO" << "\n";
+#define SORT(v) sort(v.begin(),v.end());
+#define R_SORT(v) sort(v.begin(),v.end(),greater<lli>());
 #define en "\n"
-
-// reverse binary -> lli res = 0; while(n>0){ res <<= 1; res = res(n & 1); n >>= 1;}
-// decimal to binary string -> string s = bitset<N>(n).to_string();
-// binary string to decimal -> lli n = bitset<N>(s).to_ullong();
-// Case output -> cout << "Case " << j << ": " << mx << endl;
-
-template <typename T> inline T Ceil(T a, T b)
-{
-    return ((a % b == 0) ? (a / b) : (a / b + 1));
-}
-template <typename T> inline T Floor(T a, T b)
-{
-    return a / b;
-}
-lli min(lli a,lli b,lli c)
-{
-    lli small=a;
-    if(small>b)
-      small = b;
-    if(small>c)
-        small =c;
-
-    return small;
-
-}
-template <typename T> inline T Power (T a, T p)
-{
-    T res = 1, x = a;
-    while ( p )
-    {
-        if ( p & 1 ) res = ( res * x );
-        x = ( x * x );
-        p >>= 1;
-    }
-    return res;
-}
-
-template <typename T> inline T gcd ( T a, T b )
-{
-    a = abs(a);
-    b = abs(b);
-    while ( b )
-    {
-        a = a % b;
-        swap ( a, b );
-    }
-    return a;
-}
-template <typename T> inline T lcm(T x,T y)
-{
-    return (((x)/__gcd((x),(y)))*(y));
-}
-template <typename T> inline T isPrime(T n)
-{
-    if (n <= 1) return false;
-    if (n <= 3) return true;
-    if (n % 2 == 0 || n % 3 == 0) return false;
-    for (lli i = 5; i * i <= n; i = i + 6) if (n % i == 0 || n % (i + 2) == 0) return false;
-    return true;
-}
-
-bool cmp(const pii &v1, const pii &v2)
-{
-    return (v1.second + v1.first*10)/v1.first < (v2.second + v2.first*10)/v2.first;
-}
-bool map_cmp(pair<string,lli> a,pair<string,lli> b)
-{
-    return a.second>b.second;
-}
-
-
-void map_sort(map<string, lli>& M)
-{
-    vector<pair<string, lli> > A;
-
-    for (auto& it : M)
-    {
-        A.push_back(it);
-    }
-
-    sort(A.begin(), A.end(), map_cmp);
-
-    int t=0;
-    for (auto& it : A)
-    {
-        t++;
-        if(t==2)
-        {
-            cout << it.first;
-            break;
-        }
-    }
-}
-
-
-
-
-bool func(pair<lli,lli>&a,pair<lli,lli>&b)
-{
-
-        return a.first>b.first;
-}
 
 
 void solve()
 {
+    vector<pair<lli,lli>>v;
+    vi v1;
+    vi ansv;
 
-  lli t;
-  cin>>t;
-  while(t--)
-  {
-      string n;
-      cin>>n;
+    lli c=0;
+    string s;
+    cin>>s;
+    lli sz =  s.size();
 
-      vector<pair<lli,lli>>v;
-    // vector<make_pair(lli,lli)>v;
-      for(i=0;i<n.size();i++)
-      {
-          v.pb(make_pair(n[i]-'0',i));
-      }
+    for(i=0; i<sz; i++)
+    {
+        lli ic =  s[i]-'0';
+        v.pb(make_pair(ic,i));
+        v1.pb(ic);
+    }
 
-      sort(v.begin(),v.end(),func);
-      lli c=0;
-      for(i=0;i<s.size()-1;i++)
-      {
-          if(c++)
-            break;
-          lli x = n[i]-'0';
-          for(j=i+1;j<s.size();j++)
-          {
+    lli flag=0;
+    sort(v.rbegin(),v.rend());
+    if(v[0]==v[1] && v[0]<=v[sz-1])
+        flag=1;
 
-          }
+    // cout<<sz<<endl;
+    for(i=0; i<sz; i++)
+    {
+        if(v1[i]<v[i].first)
+        {
+            lli tmp= v[i].second;
 
-      }
-      for(auto it : v)
-        cout<<it.first<<it.second<<endl;
+            for(j=i+1; j<sz; j++)
+            {
+                if(flag==1)
+                {
+                    if(v1[i]!=v[j].first)
+                    {
+                        v[j-1].second = tmp;
+                        flag=0;
+                        break;
+                    }
+                }
+                if(v1[i]==v[j].first && flag == 0)
+                {
+
+                    // cout<<"S";
+                    v[j].second = tmp;
+                    break;
+                }
+            }
+            swap(s[i],s[tmp]);
+            swap(v1[i],v1[tmp]);
+//            for(int k=0;k<sz;k++)
+//            {
+//              //  cout<<v[k].first<<v[k].second<<endl;
+//            }
+
+            c++;
+            //v[i].first=v1[i];
+            if(c==2)
+            {
+                //cout<<c;
+                cout<<s<<endl;
+                return;
+
+            }
+            // cout<<v[i].first<<v[i].second<<endl;
+        }
 
 
-  }
-
+    }
+    if(c==0)
+    {
+        cout<<s<<endl;
+    }
+    else
+    {
+        swap(s[sz-1],s[sz-2]);
+        cout<<s<<endl;
+    }
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    solve();
+    lli t,l=0;
+    cin>>t;
+    while(t--)
+    {
+        l++;
+        //cout<<"Case "<<l<<": ";
+        solve();
+    }
+
     return 0;
 }
+

@@ -1,7 +1,9 @@
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long int lli;
 lli i,j;
+
 #define pii  pair<lli, lli>
 #define vi vector<lli>
 #define pb push_back
@@ -15,32 +17,43 @@ lli i,j;
 
 void solve()
 {
-    lli sm=0;
-    string s1;
-    lli n,k;
-    cin>>n>>k>>s1;
-    map<lli,lli>m;
+    lli n,b,x,y,sm=0,sm1=0;
+    cin>>n>>b>>x>>y;
     vi v;
-    for(i=0; i<n; i++)
+    v.pb(0);
+    for(i=0;i<n;i++)
     {
-        lli s = (lli)s1[i];
-        m[s]++;
-    }
-    if(m.size()<=k)
-    {
-        cout<<k-m.size()<<endl;
-        return;
-    }
-    for(auto it : m) v.pb(it.second);
 
-    SORT(v);
-    for(i=0; i<(v.size()-k); i++) sm+=v[i];
+        if(sm + x>b)
+        {
+            sm-=y;
+        }
+        else sm+=x;
+        v.pb(sm);
+
+
+    }
+    sm =0;
+    for(auto it :  v)
+        sm+=it;
+
     cout<<sm<<endl;
+
+
 }
 int main()
 {
+
     lli t,l=0;
-    solve();
+    cin>>t;
+    while(t--)
+    {
+        l++;
+        //cout<<"Case "<<l<<": ";
+        solve();
+    }
+
     return 0;
 }
+
 

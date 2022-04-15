@@ -17,42 +17,45 @@ lli i,j;
 
 void solve()
 {
-    int t,t1;
-    cin>>t>>t1;
-    char a[25][25];
-
-    // vector<string>a[t1];
-
-
-    for(int i=0; i<t1; i++)
+    lli n,sm=0,it=0;
+    cin>>n;
+    vi v;
+    for(i=0; i<n; i++)
     {
-        scanf("%s",&a[i]);
+        lli x;
+        cin>>x;
+        v.pb(x);
 
     }
-    //  cout<<endl;
-    //cout<<a[0][1];
-    int c=0;
-    for(int i=0; i<t; i++)
+    while(!is_sorted(v.begin(),v.end()))
     {
-        for(int j=0; j<t1; j++)
+        for(i=it%2; i<n-1; i+=2)
         {
-            if(a[i][j]=='.' && a[i][j+1]!='*'&& a[i][j-1]!='*'&& a[i+1][j]!='*'&& a[i-1][j]!='*')
+            if(v[i]>v[i+1])
             {
-                c++;
-
+                swap(v[i],v[i+1]);
             }
         }
+        it++;
     }
-    cout<<c;
+    cout<<it<<endl;
+
+
+
 }
 int main()
 {
-
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     lli t,l=0;
-
-
-    solve();
-
+    cin>>t;
+    while(t--)
+    {
+        l++;
+        //cout<<"Case "<<l<<": ";
+        solve();
+    }
 
     return 0;
 }
