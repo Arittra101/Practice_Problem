@@ -13,67 +13,48 @@ lli i,j;
 #define SORT(v) sort(v.begin(),v.end());
 #define R_SORT(v) sort(v.begin(),v.end(),greater<lli>());
 #define en "\n"
-lli fac(lli n)
-{
-    lli rs = 1;
-    for(j=1; j<=n; j++)
-        rs*=j;
-    return rs;
-}
-lli ncr(lli n,lli r)
-{
-    lli nr = n-r;
-    n =  fac(n);
-    r =  fac(r);
-    nr = fac(nr);
 
-    return  n/(r*nr);
-
-}
 
 void solve()
 {
-    lli n,z=0,o=0;
+    vi v,v1;
+    lli n,tw=0,thr=0,mr=0;
+
     cin>>n;
-    vi v;
     for(i=0; i<n; i++)
     {
         lli x;
         cin>>x;
         v.pb(x);
-        if(x==0)z++;
-        else if(x==1) o++;
     }
-    if(o==0){
-        cout<<0<<endl;
-        return;
+    for(i=0; i<n-1; i++)
+    {
+        lli x = v[i+1]-v[i];
+        v1.pb(x);
+        if(x==2)tw++;
+        else if(x==3)thr++;
+        else if(x>3)mr++;
     }
-   // if(o!=0)
-  //  o = ncr(o,1);
-    lli ans = 0;
+    if(thr==1 && mr==0 && tw==0)cout<<"YES"<<endl;
+    else if(tw<=2 && mr==0 && thr==0) cout<<"YES"<<endl;
+    else if(thr==0 && mr==0 && tw==0) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
 
-//    for(i=0;i<=z;i++)
-//    {
-//        ans+=ncr(z,i)*o;
-//    }
-    ans = pow(2,z)*o;
-    cout<<ans<<endl;
 
 
 }
 int main()
 {
-
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     lli t,l=0;
     cin>>t;
     while(t--)
     {
         l++;
         //cout<<"Case "<<l<<": ";
-
         solve();
-
-       // cout<<ncr(5,4);
     }
 
     return 0;
