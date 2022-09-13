@@ -27,10 +27,5 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ],
-  "C_Cpp.errorSquiggles": "Disabled",
-  "files.associations": {
-    "iostream": "cpp",
-    "ostream": "cpp"
-  }
+  ]
 }
