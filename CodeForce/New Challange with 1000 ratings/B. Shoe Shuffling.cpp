@@ -28,7 +28,7 @@ void solve()
 
     lli n;
     cin >> n;
-    map<lli,lli>gv;
+    map<lli, lli> gv;
     vector<lli> v;
     map<lli, lli> mp;
 
@@ -48,17 +48,11 @@ void solve()
         }
     }
 
-    //     for(i=0;i<gv.size();i++)
-    //     {
-    //         cout<<i<<"->"<<gv[i]<<" ";
-    //     }
-    // cout<<endl;
-
     for (auto it : mp)
     {
         if (it.second < 2)
         {
-           
+
             cout << -1 << endl;
             return;
         }
@@ -82,7 +76,7 @@ void solve()
 }
 int main()
 {
-   ios_base::sync_with_stdio(false);
+    ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
