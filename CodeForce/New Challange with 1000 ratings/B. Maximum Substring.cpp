@@ -25,47 +25,48 @@ void solve()
 
     lli n;
     cin >> n;
+    
+    string s;
+    cin >> s;
+    n=s.size();
+    lli zr = 0, on = 0;
 
-    vi v;
+    lli mx = 1;
     for (i = 0; i < n; i++)
     {
-        lli x;
-        cin >> x;
-        v.pb(x);
+        if (s[i] == '0')
+            zr++;
+        else
+            on++;
     }
 
-    if (n % 2 != 0)
+    //  cout<<zr<<" "<<on<<endl;
+    lli zr2 = 1, on2 = 1;
+    for (i = 0; i < n - 1; i++)
     {
-        cout << "Mike" << endl;
-        return;
+        if (s[i] == '1' && s[i + 1] == '1')
+        {
+            on2++;
+            mx = max(mx, on2);
+        }
+        if (s[i] == '0' && s[i + 1] == '0')
+        {
+            zr2++;
+            mx = max(mx, zr2);
+        }
+        else if (s[i] == '1' && s[i + 1] == '0')
+            on2 = 0;
+        else if (s[i] == '0' && s[i + 1] == '1')
+            zr2 = 0;
     }
 
-    lli mn = INT_MAX;
-    lli pos;
-    for (i = 1; i < n; i += 2)
-    {
-        if (v[i] < mn)
-        {
-            mn = v[i];
-            pos = i;
-        }
-    }
-    // cout << pos << " " << mn << endl;
-    for (i = 0; i < n; i += 2)
-    {
-        if (v[i] < mn)
-        {
-            cout << "Joe" << endl;
-            return;
-        }
-        else if (v[i] == mn && i < pos)
-        {
-            cout << "Joe" << endl;
-            return;
-        }
-    }
+    // cout<<mx<<endl;
 
-    cout << "Mike" << endl;
+    lli mx2 = mx*mx;
+    lli mx3 = zr*on;
+    lli ans = max(mx2,mx3);
+  //  mx2 = max(mx * mx, zr * on);
+    cout << ans << endl;
 }
 int main()
 {
