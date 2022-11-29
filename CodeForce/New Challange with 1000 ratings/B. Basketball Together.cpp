@@ -25,54 +25,40 @@ void solve()
 
     lli n;
     cin >> n;
-    char c;
-    cin >> c;
+    lli pw;
+    cin >> pw;
 
-    string s;
-    cin >> s;
+    vi v;
+    for (i = 0; i < n; i++)
+    {
+        lli x;
+        cin >> x;
+        v.pb(x);
+    }
 
-    s += s;
-    if (c == 'g')
+    R_SORT(v);
+    lli n1 = n;
+    lli cnt = 0;
+    for (i = 0; i < n; i++)
     {
-        cout << 0 << endl;
-        return;
-    }
-  //  cout << s << endl;
-    vi grn;
-    for (i = 0; i < s.size(); i++)
-    {
-        if (s[i] == 'g')
+        lli nd = pw / v[i];
+        if (n1 < nd + 1)
         {
-          //  cout << i << " ";
-            grn.pb(i);
+            break;
         }
+        n1 = n1 - (nd + 1);
+        // cout<<nd<<" "<<n1<<endl;
+        cnt++;
     }
-  //  cout << endl;
-    lli an = INT_MIN;
-    for (i = 0; i < s.size(); i++)
-    {
-        if (s[i] == c)
-        {
-           auto it =  upper_bound(grn.begin(), grn.end(), i);
-           if(it!=grn.end())
-           {
-                an =  max(an,abs(*it-i));
-           }
-          
-        }
-    }
-    cout<<an<<endl;
+    cout << cnt << endl;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    lli t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
+
+    solve();
+
     // cout<<"Case "<<l<<": ";
 }

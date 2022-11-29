@@ -23,45 +23,44 @@ bool SORT1(pair<lli, lli> p1, pair<lli, lli> p2)
 void solve()
 {
 
-    lli n;
-    cin >> n;
-    char c;
-    cin >> c;
+    lli n, m;
+    cin >> n >> m;
+    map<lli, lli> mp;
 
-    string s;
-    cin >> s;
-
-    s += s;
-    if (c == 'g')
+    vi v;
+    lli mx = INT_MIN;
+    for (i = 0; i < n; i++)
     {
-        cout << 0 << endl;
-        return;
+        lli x;
+        cin >> x;
+        v.pb(x);
+        mx = max(x, mx);
+        mp[x] = 1;
     }
-  //  cout << s << endl;
-    vi grn;
-    for (i = 0; i < s.size(); i++)
+    lli sm = 0;
+    i = 1;
+    while (sm <= m)
     {
-        if (s[i] == 'g')
+
+        if (!mp[i])
         {
-          //  cout << i << " ";
-            grn.pb(i);
+            sm += i;
+            v.pb(i);
+            mx = max(i, mx);
+        }
+        
+        i++;
+        if (sm == m)
+        {   
+     
+            if (mx == v.size())
+                cout << "YES" << endl;
+            else
+                cout << "NO" << endl;
+            return;
         }
     }
-  //  cout << endl;
-    lli an = INT_MIN;
-    for (i = 0; i < s.size(); i++)
-    {
-        if (s[i] == c)
-        {
-           auto it =  upper_bound(grn.begin(), grn.end(), i);
-           if(it!=grn.end())
-           {
-                an =  max(an,abs(*it-i));
-           }
-          
-        }
-    }
-    cout<<an<<endl;
+    cout << "NO" << endl;
 }
 int main()
 {

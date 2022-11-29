@@ -25,43 +25,31 @@ void solve()
 
     lli n;
     cin >> n;
-    char c;
-    cin >> c;
-
     string s;
-    cin >> s;
+    cin>>s;
 
-    s += s;
-    if (c == 'g')
+    lli dct, mx, ans = 0;
+    for (i = 0; i < n; i++)
     {
-        cout << 0 << endl;
-        return;
-    }
-  //  cout << s << endl;
-    vi grn;
-    for (i = 0; i < s.size(); i++)
-    {
-        if (s[i] == 'g')
+        vi v(11, 0);
+        dct = 0;
+        mx = 0;
+        for (j = i; j <= min(n - 1, i + 100); j++)
         {
-          //  cout << i << " ";
-            grn.pb(i);
+            
+            if (v[s[j] - '0'] == 0)
+            {
+                dct++;
+            }
+            v[s[j] - '0']++;
+            mx = max(mx, v[s[j] - '0']);
+            if (dct >= mx)
+            {
+                ans++;
+            }
         }
     }
-  //  cout << endl;
-    lli an = INT_MIN;
-    for (i = 0; i < s.size(); i++)
-    {
-        if (s[i] == c)
-        {
-           auto it =  upper_bound(grn.begin(), grn.end(), i);
-           if(it!=grn.end())
-           {
-                an =  max(an,abs(*it-i));
-           }
-          
-        }
-    }
-    cout<<an<<endl;
+    cout << ans << endl;
 }
 int main()
 {

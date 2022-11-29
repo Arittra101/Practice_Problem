@@ -25,43 +25,47 @@ void solve()
 
     lli n;
     cin >> n;
-    char c;
-    cin >> c;
-
-    string s;
-    cin >> s;
-
-    s += s;
-    if (c == 'g')
+    vi v;
+    for (i = 0; i < n; i++)
     {
-        cout << 0 << endl;
+        lli x;
+        cin >> x;
+        v.pb(x);
+    }
+    lli cnt = 0;
+    if (n == 1)
+    {
+        cout << "YES" << endl;
         return;
     }
-  //  cout << s << endl;
-    vi grn;
-    for (i = 0; i < s.size(); i++)
+    if (v[0] < v[1])
+        cnt++;
+    if (v[n - 2] > v[n - 1])
+        cnt++;
+    // cout<<cnt<<" ";
+    if (cnt > 1)
     {
-        if (s[i] == 'g')
-        {
-          //  cout << i << " ";
-            grn.pb(i);
-        }
+        cout << "NO" << endl;
+        return;
     }
-  //  cout << endl;
-    lli an = INT_MIN;
-    for (i = 0; i < s.size(); i++)
+
+    for (i = 1; i < n - 1; i++)
     {
-        if (s[i] == c)
+        if (v[i] < v[i - 1])
         {
-           auto it =  upper_bound(grn.begin(), grn.end(), i);
-           if(it!=grn.end())
-           {
-                an =  max(an,abs(*it-i));
-           }
-          
+            for (j = i + 1; j < n; j++)
+            {
+                if(v[j]<v[j+1]) cnt++;
+                if(cnt>1){ 
+                    cout<<"NO"<<endl;
+                    return;
+                }
+            }
+
         }
+        
     }
-    cout<<an<<endl;
+    cout << "YES" << endl;
 }
 int main()
 {

@@ -27,11 +27,13 @@ void solve()
     cin >> n;
 
     vi v;
+    
     for (i = 0; i < n; i++)
     {
         lli x;
         cin >> x;
         v.pb(x);
+     
     }
 
     if (n % 2 != 0)
@@ -40,32 +42,75 @@ void solve()
         return;
     }
 
-    lli mn = INT_MAX;
-    lli pos;
-    for (i = 1; i < n; i += 2)
+    else
     {
-        if (v[i] < mn)
-        {
-            mn = v[i];
-            pos = i;
-        }
-    }
-    // cout << pos << " " << mn << endl;
-    for (i = 0; i < n; i += 2)
-    {
-        if (v[i] < mn)
-        {
-            cout << "Joe" << endl;
-            return;
-        }
-        else if (v[i] == mn && i < pos)
-        {
-            cout << "Joe" << endl;
-            return;
-        }
-    }
 
-    cout << "Mike" << endl;
+        // if (s.size() == 1)
+        // {
+        //     cout << "Joe" << endl;
+        //     return;
+        // }
+
+        // for (i = 0; i < n - 1; i+=2)
+        // {
+        //     if (v[i] <= v[i + 1])
+        //     {
+        //         //cout<<v[i]<<" "<<v[i+1];
+        //         cout << "Joe" << endl;
+        //         return;
+        //     }
+        // }
+        // cout<<"Mike"<<endl;
+        // return;
+
+        lli mn = INT_MAX;
+        lli mn1 = INT_MAX;
+        lli ind;
+        lli ind1;
+        for (i = 0; i < n; i++)
+        {
+            if (i % 2 == 0)
+            {
+                if (mn < v[i])
+                {
+                    mn = min(mn, v[i]);
+                    ind = i;
+                }
+            }
+            if (i % 2 == 1)
+            {
+                if (mn1 < v[i])
+                {
+                    mn1 = min(mn1, v[i]);
+                    ind1 = i;
+                }
+            }
+        }
+
+        if (mn < mn1)
+        {
+            cout << "Joe" << endl;
+            return;
+        }
+        else if (mn > mn1)
+        {
+            cout << "Mike" << endl;
+            return;
+        }
+        else
+        {
+            if (ind < ind1)
+            {
+                cout << "Joe" << endl;
+                return;
+            }
+            else
+            {
+                cout << "Mike" << endl;
+                return;
+            }
+        }
+    }
 }
 int main()
 {

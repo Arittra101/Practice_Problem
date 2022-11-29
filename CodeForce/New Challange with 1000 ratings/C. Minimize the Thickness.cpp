@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long int lli;
 lli i, j;
-
+ 
 #define pii pair<lli, lli>
 #define vi vector<lli>
 #define pb push_back
@@ -15,53 +15,52 @@ lli i, j;
 #define R_SORT(v) sort(v.begin(), v.end(), greater<lli>());
 #define en "\n"
 lli s;
-
+ 
 bool SORT1(pair<lli, lli> p1, pair<lli, lli> p2)
 {
     return p1.first < p2.first;
 }
 void solve()
 {
+ 
+   string s;
+   cin>>s;
+   string s1 = "YesYes";
+   map<char,int>mp;
 
-    lli n;
-    cin >> n;
-    char c;
-    cin >> c;
-
-    string s;
-    cin >> s;
-
-    s += s;
-    if (c == 'g')
+   for(i=0;i<s.size();i++)
+   {
+    if(s[i]!='Y' && s[i]!='e' && s[i]!='s') 
     {
-        cout << 0 << endl;
+        cout<<"NO"<<endl;
         return;
     }
-  //  cout << s << endl;
-    vi grn;
-    for (i = 0; i < s.size(); i++)
+    else{
+        mp[s[i]]=i;
+    }
+   }
+  
+
+    vi v;
+   for(i=0;i<s.size();i++)
     {
-        if (s[i] == 'g')
+        for(j=0;j<s1.size();j++)
         {
-          //  cout << i << " ";
-            grn.pb(i);
+            if(mp[s1[j]]!=0)
+            {
+                v.pb(mp[s1[j]]);
+            }
         }
     }
-  //  cout << endl;
-    lli an = INT_MIN;
-    for (i = 0; i < s.size(); i++)
+    for(i=0;i<v.size()-1;i++)
     {
-        if (s[i] == c)
-        {
-           auto it =  upper_bound(grn.begin(), grn.end(), i);
-           if(it!=grn.end())
-           {
-                an =  max(an,abs(*it-i));
-           }
-          
+        if(v[i]+1!=v[i+1]){
+            cout<<"NO"<<endl;
+            return;
         }
     }
-    cout<<an<<endl;
+    cout<<"Yes"<<endl;
+
 }
 int main()
 {

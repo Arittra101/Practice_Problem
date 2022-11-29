@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long int lli;
 lli i, j;
-
+ 
 #define pii pair<lli, lli>
 #define vi vector<lli>
 #define pb push_back
@@ -15,53 +15,19 @@ lli i, j;
 #define R_SORT(v) sort(v.begin(), v.end(), greater<lli>());
 #define en "\n"
 lli s;
-
+ 
 bool SORT1(pair<lli, lli> p1, pair<lli, lli> p2)
 {
     return p1.first < p2.first;
 }
 void solve()
 {
+ 
+   lli n;
+   cin>>n;
 
-    lli n;
-    cin >> n;
-    char c;
-    cin >> c;
-
-    string s;
-    cin >> s;
-
-    s += s;
-    if (c == 'g')
-    {
-        cout << 0 << endl;
-        return;
-    }
-  //  cout << s << endl;
-    vi grn;
-    for (i = 0; i < s.size(); i++)
-    {
-        if (s[i] == 'g')
-        {
-          //  cout << i << " ";
-            grn.pb(i);
-        }
-    }
-  //  cout << endl;
-    lli an = INT_MIN;
-    for (i = 0; i < s.size(); i++)
-    {
-        if (s[i] == c)
-        {
-           auto it =  upper_bound(grn.begin(), grn.end(), i);
-           if(it!=grn.end())
-           {
-                an =  max(an,abs(*it-i));
-           }
-          
-        }
-    }
-    cout<<an<<endl;
+   if(n%2==0)cout<<n/2<<endl;
+   else cout<<(n/2)+1<<endl;
 }
 int main()
 {
