@@ -17,21 +17,44 @@ lli i,j;
 
 void solve()
 {
+
     lli n;
     cin>>n;
-    set<lli>s;
+
+    vi v;
     for(i=0;i<n;i++)
     {
         lli x;
         cin>>x;
-        s.insert(x);
+        v.pb(x);
     }
-    if(s.size()==2)
+    R_SORT(v);
+    i=0;
+    j=n-1;
+    lli mxc=1,mnc=1;
+    lli mxv = v[i],mnv=v[j];
+    while(i<j)
     {
-        cout<<(n-2)/2 + 2<<endl;
-    }
-    else cout<<n<<endl;
 
+        if(mnv<mxv)
+        {
+            j--;
+            mnc++;
+            mnv+=v[j];
+        }
+        else if(mxv<=mnv){
+            i++;
+            mxc++;
+            mxv+=v[i];
+
+        }
+ //cout<<mxv<<" "<<mnv<<" "<<mxc<<" "<<mnc<<endl;
+        if(mxv>mnv && mxc<mnc) {
+            cout<<"YES"<<endl;
+            return;
+        }
+    }
+    cout<<"No"<<endl;
 }
 int main()
 {

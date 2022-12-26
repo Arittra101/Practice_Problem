@@ -19,33 +19,45 @@ void solve()
 {
     lli n;
     cin>>n;
-    set<lli>s;
-    for(i=0;i<n;i++)
+    vi v;
+    for(i=0; i<n; i++)
     {
+
         lli x;
         cin>>x;
-        s.insert(x);
+        v.pb(x);
     }
-    if(s.size()==2)
+
+    i=0;
+    j = n-1;
+    lli s=0,d=0,cnt=n,scnt=1;
+    while(cnt!=0)
     {
-        cout<<(n-2)/2 + 2<<endl;
+        cnt--;
+        if(v[i]>v[j])
+        {
+            if(scnt%2!=0) s+=v[i];
+            else d+=v[i];
+            i++;
+        }
+        else
+        {
+            if(scnt%2!=0) s+=v[j];
+            else d+=v[j];
+            j--;
+        }
+        scnt++;
+
     }
-    else cout<<n<<endl;
+    cout<<s<<" "<<d<<endl;
 
 }
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    lli t,l=0;
-    cin>>t;
-    while(t--)
-    {
-        l++;
-        //cout<<"Case "<<l<<": ";
+
+
         solve();
-    }
+
 
     return 0;
 }
